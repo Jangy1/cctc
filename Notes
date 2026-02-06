@@ -1,1 +1,125 @@
+file server 10.10.0.3 = andy.dwyer:BurtMacklinFBI 
+WS2 10.10.0.4 = 
+DC 10.10.0.1 = 
+WS1 10.10.0.5 = RDP student:password
+Terra 10.10.0.6 = garviel:luna
+Minas_Tirith 10.10.0.7 = bombadil:jolly
+Jump IP = 10.50.15.30
+
+CTF = 10.50.186.43:8000
+
+ Get-CimClass = find methods
+
+Only HKLM and HKCU are physically stored as hive files
+
+              -Commands- PowerShell
+echo "hidden data" > dir:HiddenInfo.txt
+dir /R = shows hidden objects
+more < = shows contents of hidden
+dir /a /s searchterm* = searches for whatever filename/directory
+
+Set-Content filename -Value "secret info" -Stream secret.info
+gi reminder.txt -stream *
+gc reminder.txt -stream secret.info
+Get-Item to display a specific registry key and its properties
+
+-Situational Awareness- LINUX
+hostname / uname -a 
+whoami / w / who
+ip addr / ifconfig
+ip route 
+arp
+netstat
+nft list tables
+sudo -l
+id
+
+Bash variables = set without $ 
+                 read with $
+awk command very useful
+
+
+
+assign output of a command to a variable = $(command)
+
+Exxample-
+directories=$(ls /l)
+echo $variable 
+
+0 STDIN
+1 STDOUT
+2 STDERR
+Arrow points in direction
+
+xxd = reveals file signatures/headers
+
+sticky bit = prevents ppl from deleting files the dont own in shared directories
+
+BCDEdit to detect Boot mode 
+
+  bcdedit | findstr /i winload
+winload.exe > BIOS
+winload.efi > UEFI
+
+  Check GUI Msinfo32.exe
+smss.exe = FIRST User Mode process > Also starts csrss.exe
+                                                                                    -IMPORTANT COMMANDS-
+
+-Session zero Processes-                                                                  
+wininit.exe                                                                               
+services.exe(service control manager)
+lsass.exe(authentication ad security)
+csrss.exe(session management)
+
+                                                                          sc query
+                                                                          reg query
+
+bcdedit = manages windows boot config and reveals boot artifacts
+
+                                                                            -Backup & Restore Current BCD settings-
+                                                                          c:\demo>bcdedit /export C:\Lion\_BCD 
+                                                                          c:\demo>bcdedit /import C:\Lion\_BCD
+
+-Create a new partition-
+c:\demo>bcdedit /create {ntldr} /d "Windows XP Pro SP2 - Tiger Paw"
+
+                                                                                    -Specify the Path to ntldr-
+                                                                        c:\demo>bcdedit /set {ntldr} path \ntldr
+
+                                                                                      -Specify the Partition-
+                                                                        c:\demo>bcdedit /set {ntldr} device partition=C:
+
+                                                                                    -Find persistence through a service\
+                                                                        get-ciminstance -classname win32_service | select displayname 
+
+                                                                      - cat suspicious files 
+
+                                                                      -bcdedit /deletevalue {value} valuename 
+
+                                                                      lsblk = identify the boot disk and mounted root filesystem
+block device is special fiile representing a device 
+
+                                                                      -verify mbr locating boot signature- 
+                                                                      sudo xxd -l 512 -g 1 /dev/vda
+
+
+                                                                      /boot/grub/x86_64-efi/normal.mod + grub.cfg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
