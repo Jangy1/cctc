@@ -102,9 +102,34 @@ block device is special fiile representing a device
                                                                       -verify mbr locating boot signature- 
                                                                       sudo xxd -l 512 -g 1 /dev/vda
 
+                                                                        persistance could be established through grub
+                                                                      /boot/grub/x86_64-efi/normal.mod + /boot/grub/grub.cfg
+                                                                       
 
-                                                                      /boot/grub/x86_64-efi/normal.mod + grub.cfg
+                                                                       lsmod = list loaded kernel modules
+                                                                       ltrace -S cat /etc/passswd = observe syscalls while reading a file
 
+                                                                      cat /etc/inittab = init reads to select defualt run level 
+                                                                      /etc/rc#.d = contains the scripts to start/stop daemons
+systemd is PID 1 on most modern distros
+                                                                      Demonstrate the difference between interactive login shells and Non-Login interactive shells
+
+student@linux-opstation-kspt:~$ cd $HOME
+student@linux-opstation-kspt:~$ echo "echo 'Im in `~/.profile`'" >> .profile # 1
+student@linux-opstation-kspt:~$ echo "echo 'Im in ~/.bashrc'" >> .bashrc # 1
+
+                                                                      dd if=mbroken bs=1 skip=446 count=16 2>/dev/null
+
+                                          
+                                                                      grep -aob "GRUB" mbroken
+
+                                                                      ls -l rc*.d = long list any of the run level dameon directories
+                                                                      top = show PID and all services correlating
+                                                                      ls -l /sbin/init = show what the file is linked to 
+                                                                     
+
+                                                                     The kernel is loaded with the command linux
+                                                                     cat /boot/grub/grub.cfg = GRUB configuration
 
 
 
