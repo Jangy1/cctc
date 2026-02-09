@@ -5,7 +5,6 @@ WS1 10.10.0.5 = RDP student:password
 Terra 10.10.0.6 = garviel:luna
 Minas_Tirith 10.10.0.7 = bombadil:jolly
 Jump IP = 10.50.15.30
-
 CTF = 10.50.186.43:8000
 
  Get-CimClass = find methods
@@ -19,8 +18,8 @@ more < = shows contents of hidden
 dir /a /s searchterm* = searches for whatever filename/directory
 
 Set-Content filename -Value "secret info" -Stream secret.info
-gi reminder.txt -stream *
-gc reminder.txt -stream secret.info
+Get-Item reminder.txt -stream *
+Get-Content reminder.txt -stream secret.info
 Get-Item to display a specific registry key and its properties
 
 -Situational Awareness- LINUX
