@@ -1,6 +1,6 @@
 -PERSISTENCE-
 
-dir /R = Shows hidden objects 
+dir /R = Recursive search a directory 
 more < = Shows contentsd of hidden objects
 dir /a /s searchterm* = Searches for certain filename / directory
 echo "hidden data" > dir:HiddenInfo.txt
@@ -20,7 +20,12 @@ C:\demo>bcdedit /import C:\Lion\BCD
 
 -Persistence through a service-
 Get-CimInstance -classname win32_service | select displayname
+tasklist /m = View all running processes and show loaded dll's for each process
+Get-Process
+Get-Service name | format-list * = View service and all properties in list
 
+
+Select Name, ProcessId, ParentProcessId
 cat suspicious files
 
 bcdedit /deletevalue {value} valuename
@@ -36,6 +41,8 @@ lsmod = List loaded kernel modules
 cat /etc/inittab = init reads to select default run levels
 /etc/rc#.d = Contains scripts to start/stop daemons
 top = show PID and all services correlating
+Get-Process | Select Name, Id, Description | Sort -Property Id | more
+
 
 greb -aob "GRUB" mbroken = Sorts binary and locates where the string is at
 dd if=mbroken bs=1 skip=446 count=16 2>/dev/nll
@@ -53,14 +60,38 @@ Sticky bit = Prevents people from deleting files they dont own in shared directo
 shutdown /a = Aborts shutdown
 shutdown /r /t 0 = restarts machine immediately 
 
+    -System processes will not execute from user directories-
+    -All dll's live in C:\Windows\system32-
 
+-Run keys execute programs at logon-
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run
 
+-Services persist via registry-backed config-
+HKLM\SYSTEM\CurrentControlSet\Services
 
+-Per user persistence-
+HKU\<SID>\Software\Microsoft\Windows\CurrentVersion\Run
 
+-View active network connections and listening ports-
+Get-NetTCPConnection -State Established 
+                            Listen
 
+-Correlate PID to process-
+Get-NetTCPConnection | Select LocalPort, RemoteAddress, State, OwningProcess
+Get-Process -Id <PID>
 
+netstat -anob = All connection and listening ports, numerically, owning PID, executable responisible for the connection
 
-
+-AutoRuns- *How persistence survives reboot*
+-Process Monitor-    PPID *IMPORTANT*
+-TCPView-     
+-PSExec-    -s | -i| -c
+-PsLoggedon- *Who is logged on*
+-PsList- *running processes only*
+-Procexp- *Explains what process is doing*
+-Strings- *Extracts text from binary or text files*
+-Handle- *Shows handles being used/opened currently* Handles are data that represents open instances(Files, Keys, etc)
 
 
 
