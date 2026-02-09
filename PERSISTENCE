@@ -11,6 +11,7 @@ Get-Content reminder.txt -stream secret.info
 bcdedit = boot config and boot artifacts
 bcdedit | finsdstr /i winload
 sc query
+sc qdescription
 reg query
 
 -Backup and restore Current BCD settings-
