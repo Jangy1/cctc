@@ -1,0 +1,103 @@
+-PERSISTENCE-
+
+dir /R = Shows hidden objects 
+more < = Shows contentsd of hidden objects
+dir /a /s searchterm* = Searches for certain filename / directory
+echo "hidden data" > dir:HiddenInfo.txt
+
+Get-Item = display a specific registry key and its properties
+Get-Content reminder.txt -stream secret.info
+
+bcdedit = boot config and boot artifacts
+bcdedit | finsdstr /i winload
+sc query
+reg query
+
+-Backup and restore Current BCD settings-
+C:\demo>bcdedit /export C:\Lion\BCD
+C:\demo>bcdedit /import C:\Lion\BCD
+
+-Persistence through a service-
+Get-CimInstance -classname win32_service | select displayname
+
+cat suspicious files
+
+bcdedit /deletevalue {value} valuename
+
+-Verify mbr locating boot signature-
+sudo xxd -1 512 -g 1 /dev/sda
+
+-Persistence could be established through-
+/boot/grub/x86_64-efi/normal.mod + /boot/grub/grub.cfg
+
+lsmod = List loaded kernel modules
+
+cat /etc/inittab = init reads to select default run levels
+/etc/rc#.d = Contains scripts to start/stop daemons
+top = show PID and all services correlating
+
+greb -aob "GRUB" mbroken = Sorts binary and locates where the string is at
+dd if=mbroken bs=1 skip=446 count=16 2>/dev/nll
+cat .boot/grub/grub.cfg = GRUB configuration
+
+-ALWAYS CHECK PROFILES-
+$PROFILE = Command configs and environmental variables dedicated to certain user, filepaths and scripts included
+AllUsersAllHosts
+AllUsersCurrentHosts
+CurrentUserCurrentHosts
+CurrentUserAllHosts
+
+Sticky bit = Prevents people from deleting files they dont own in shared directories "t"
+
+shutdown /a = Aborts shutdown
+shutdown /r /t 0 = restarts machine immediately 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
