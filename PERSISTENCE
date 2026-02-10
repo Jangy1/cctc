@@ -126,6 +126,10 @@ ls -l /etc/systemd/system | grep -E "*.service"  *show all services in the direc
 
 /lib/systemd/system *Contains services, targets, timers, etc*
 
+netstat -tulpn *show all listening ports*
+
+
+netstat -tulpn | grep -E ':(80|443)'  *Locate unknown web server potential or service*
 
 
 
