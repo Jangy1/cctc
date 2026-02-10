@@ -122,8 +122,6 @@ sudo lsof  -p <PID>
 
 systemctl list-units --type=service *Search for services in Linux*
 
-ls -l /etc/systemd/system | grep -E "*.service"  *show all services in the directory*
-
 /lib/systemd/system *Contains services, targets, timers, etc*
 
 netstat -tulpn *show all listening ports*
