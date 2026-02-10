@@ -129,6 +129,11 @@ netstat -tulpn *show all listening ports*
 
 netstat -tulpn | grep -E ':(80|443)'  *Locate unknown web server potential or service*
 
+systemctl list-timers --all   *List all timers on linux*
+
+
+
+
 
 
 
