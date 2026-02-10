@@ -95,6 +95,16 @@ netstat -anob = All connection and listening ports, numerically, owning PID, exe
 -ListDLL's- *shows Dll's for specific executables*
             listdlls.exe <executable.exe>
 
+-sigcheck- *File version and signature viewer* 
+            sigcheck -m "exe path"
+
+sc queryex type=service state=all *Show all services running or not*
+
+HKLM\SYSTEM\CurrentControlSet\Services\Service_Name\Parameters *holds a service's .dll location*
+
+get-service *show displayname and servicename*
+sc showsid <service> *show sid of service*
+
 
 
 
