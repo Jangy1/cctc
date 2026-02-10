@@ -85,14 +85,15 @@ netstat -anob = All connection and listening ports, numerically, owning PID, exe
 
 -AutoRuns- *How persistence survives reboot*
 -Process Monitor-    PPID *IMPORTANT*
--TCPView-     
+-TCPView-   *Network*
 -PSExec-    -s | -i| -c
 -PsLoggedon- *Who is logged on*
 -PsList- *running processes only*
 -Procexp- *Explains what process is doing*
 -Strings- *Extracts text from binary or text files*
 -Handle- *Shows handles being used/opened currently* Handles are data that represents open instances(Files, Keys, etc)
-
+-ListDLL's- *shows Dll's for specific executables*
+            listdlls.exe <executable.exe>
 
 
 
