@@ -40,7 +40,7 @@ lsmod = List loaded kernel modules
 
 cat /etc/inittab = init reads to select default run levels
 /etc/rc#.d = Contains scripts to start/stop daemons
-top = show PID and all services correlating
+top / htop = show PID and all services correlating
 Get-Process | Select Name, Id, Description | Sort -Property Id | more
 
 
@@ -118,7 +118,7 @@ sudo lsof -i :<port#> *Associate port# to process names*
 
 htop *able to list orphan processes when sorted*
 
-sudo lsof  -p <PID>
+sudo lsof  -p <PID> *searches based off PID*
 
 systemctl list-units --type=service *Search for services in Linux*
 
@@ -131,10 +131,39 @@ netstat -tulpn | grep -E ':(80|443)'  *Locate unknown web server potential or se
 
 systemctl list-timers --all   *List all timers on linux*
 
+systemctl status <PID>
+
+HKCU    *User specific*
+
+HKEY_USERS\*    *Show every logged on user at once*
+
+JumpLists *Form of persistence*
+
+C:\Windows\Prefetch   *Some of these files created when an application runs for the first time*
+
+C:\Users\<USER>\AppData\Roaming     Reveals app + files requently or recently accessed or used* 
+
+HKCU\Software\Microsoft\Windows\CurrnetVersiob\Explorer\RecentDocs       *Last 150 files or folders opened*
+                                                                  \.txt
+auditpol /get /categpry:*    *all auditing files* Auditing = who did what, when, and where.
+
+Get-Eventlog / Get-WinEvent / wevtutil
+
+Key event ID's = 4103 , Verbos CMD Exec
+                 4104 , Full script conetents decoded
+                 4105 , Engine start
+                 4106 , Engine stop
+
+dir /TA   *Access time and date*
+
+    -Search for txt files recently opened-
+Get-Item "REGISTRY::HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt" | select -Expand property | ForEach-Object {
+    [System.Text.Encoding]::Default.GetString((Get-ItemProperty -Path "REGISTRY::HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt" -Name $_).$_)
+}
 
 
-
-
+        *Shows programs that were run and when they were executed*
+Get-Childitem -Path C:\Windows\Prefetch -ErrorAction Continue | select -First 8
 
 
 
