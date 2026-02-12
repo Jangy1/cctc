@@ -185,6 +185,7 @@ Xpath | SIEM Ingestion
 
 jq . conn.log   *pretty print the conn.log file*
 
+xpath -q -e '//element/@attribute' file.xml   *Parse files with Xpath*
 
 
 
