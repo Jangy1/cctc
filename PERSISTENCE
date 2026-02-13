@@ -187,7 +187,7 @@ jq . conn.log   *pretty print the conn.log file*
 
 xpath -q -e '//element/@attribute' file.xml   *Parse files with Xpath*
 
-
+xpath -q -e "//host[ports/port/state/@state='open'] /address/@addr | //port[state/@state='open']/@portid " /home/garviel/output.xml  *Select every IP address with open (in use) ports using XPATH queries and XPATH axes.*
 
 
 
