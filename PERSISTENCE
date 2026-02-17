@@ -1,4 +1,17 @@
--PERSISTENCE-
+-PERSISTENCE-                                                                                                Most           CPU registers, cache
+
+                                                                                                                        Routing table, ARP cache, process table, kernel stats, memory
+
+                                                                                                                        Temporary file systems
+                                                                                        -ORDER OF VOLATILITY-
+                                                                                                                        Disk
+
+                                                                                                                        Remote logging and monitoring data
+
+                                                                                                                        Physical configuration, network topology
+                                                                                                            Least       Archival media - backups
+
+                                                                                                                      
 
 dir /R = Recursive search a directory 
 more < = Shows contentsd of hidden objects
@@ -97,7 +110,7 @@ netstat -anob = All connection and listening ports, numerically, owning PID, exe
 
 -sigcheck- *File version and signature viewer* 
             sigcheck -m "exe path"
-
+------------------------------------------------------------------------------------------------------
 sc queryex type=service state=all *Show all services running or not*
 
 HKLM\SYSTEM\CurrentControlSet\Services\Service_Name\Parameters *holds a service's .dll location*
@@ -125,7 +138,6 @@ systemctl list-units --type=service *Search for services in Linux*
 /lib/systemd/system *Contains services, targets, timers, etc*
 
 netstat -tulpn *show all listening ports*
-
 
 netstat -tulpn | grep -E ':(80|443)'  *Locate unknown web server potential or service*
 
@@ -175,7 +187,7 @@ mail.!info  - matches all messages produced by the kernel with severity of less 
 5 Notice
 6 Informational
 7 Debug - Lowest severity
----------------LOGS-------------------------
+---------------LOGS----------------------------------------------------------------------------------------------------
 journalctl -e  *Jump to most recent entries*
 journalctl -b <boot id>   * Filter by boot*
 journalctl -u ssh.service  *Filter by service*
@@ -192,16 +204,22 @@ xpath -q -e "//host[ports/port/state/@state='open'] /address/@addr | //port[stat
 
 
 
+-------------------------------METHODOLOGY FOR MEMORY ANALYSIS--------------------------------------------------------
 
+IDENTIFY ROUGE PROCESSES - Pslist vs. Psscan | Process validity | Multiple of same processes or misspelling 
 
+ANALYZE DLL & HANDLES - DllLIST | DllDump
 
+EXAMINE NETWORK ARTIFACTS - Connetions
 
+HUNT FOR CODE INJECTION - Malfind
 
+DUMP SUSPICIOUS PROCESSES - ProcDump | MemDump | Filescan | Svcscan| Driverirp
 
+CHECK FOR ROOTKIT - Psscan | devicetree
 
-
-
-
+------------------------------------------ -----COMMANDS---------------------------------------------------------------
+List users (name wildcard)
 
 
 
