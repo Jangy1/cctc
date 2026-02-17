@@ -224,4 +224,27 @@ List users (name wildcard)
 *Find the expired accounts that aren't disabled. List the last names in Alphabetical Order, separated with a comma, and no space between.*
 (Get-ADUser -Filter {Enabled -eq $true} -Properties AccountExpirationDate | Where-Object {$_.AccountExpirationDate -lt (Get-Date) -and $_.AccountExpirationDate -ne $null} | Sort-Object Surname | Select-Object -ExpandProperty Surname) -join ','
 
+*How to find email addresses in active directory*
+Get-ADUser -Filter {Mail -eq 'user@domain.com'} -Properties Name, Mail | Select-Object Name, Mail
+
+*Filter users based on their description*
+get-aduser -filter {Description -like "*"} -properties description, surname | select Name, Description, SamAccountName
+
+*Find account that has a password stored using reversible encryption*
+Get-ADUser -Filter 'userAccountControl -band 128' -Properties userAccountControl
+
+*Find accounts that never expire*
+Search-ADAccount -PasswordNeverExpires | Where-Object {$_.Enabled -eq $true -and $_.SamAccountName -notlike 'Guest' -and $_.SamAccountName -notlike 'Administrator'}
+
+*Filter by username to find SID*
+Get-ADUser -Identity "username" -Properties SID | Select-Object Name, SID
+
+*Find users full name and description*
+Get-LocalUser | Where-Object {$_.name -like "Tiff*"}
+
+*Find users full Identity and description*
+Get-ADUser -Identity "user" -Properties *
+
+
+
 
