@@ -53,7 +53,7 @@ lsmod = List loaded kernel modules
 
 cat /etc/inittab = init reads to select default run levels
 /etc/rc#.d = Contains scripts to start/stop daemons
-top / htop = show PID and all services correlating
+top / htop = show PID and all services correlating and might be running at intervals
 Get-Process | Select Name, Id, Description | Sort -Property Id | more
 
 
@@ -61,18 +61,14 @@ greb -aob "GRUB" mbroken = Sorts binary and locates where the string is at
 dd if=mbroken bs=1 skip=446 count=16 2>/dev/nll
 cat .boot/grub/grub.cfg = GRUB configuration
 
--ALWAYS CHECK PROFILES-
+------------------------------------ALWAYS CHECK PROFILES----------------------------------
 $PROFILE = Command configs and environmental variables dedicated to certain user, filepaths and scripts included
 AllUsersAllHosts
 AllUsersCurrentHosts
 CurrentUserCurrentHosts
 CurrentUserAllHosts
 
-Sticky bit = Prevents people from deleting files they dont own in shared directories "t"
-
-shutdown /a = Aborts shutdown
-shutdown /r /t 0 = restarts machine immediately 
-
+--------------------------MORE PERSISTENCE-------------------------------
     -System processes will not execute from user directories-
     -All dll's live in C:\Windows\system32-
 
@@ -95,7 +91,7 @@ Get-NetTCPConnection | Select LocalPort, RemoteAddress, State, OwningProcess
 Get-Process -Id <PID>
 
 netstat -ano = All connection and listening ports, numerically, owning PID, executable responisible for the connection
-
+-------------------TOOLS--------------------------------------------------------
 -AutoRuns- *How persistence survives reboot*
 -Process Monitor-    PPID *IMPORTANT*
 -TCPView-   *Network*
@@ -142,6 +138,8 @@ netstat -tulpn *show all listening ports*
 netstat -tulpn | grep -E ':(80|443)'  *Locate unknown web server potential or service*
 
 systemctl list-timers --all   *List all timers on linux*
+
+cat *.service | grep -E 'searchterm'
 
 systemctl status <PID>
 
@@ -244,6 +242,12 @@ Get-LocalUser | Where-Object {$_.name -like "Tiff*"}
 
 *Find users full Identity and description*
 Get-ADUser -Identity "user" -Properties *
+
+*TOOL VERY IMPORTANT*
+-AUTORUNS *Shows applications started on boot as well as Registry and file locations for auto-start configs*
+-TCPVIEW *Shows all TCP and UDP endpoints with local and remote addresses*
+-TASK SCHEDULER *View task history*
+-REGEDIT *View, create and modify Windows Registry* 
 
 
 
