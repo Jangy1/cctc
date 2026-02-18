@@ -121,7 +121,7 @@ ps --ppid 2 -lf | head
 -All PID lead back to 1 or 2-
                     user  kernel
 
-sudo lsof | tail -30 * View file descriptors and list all open files being used by every process*
+sudo lsof | tail -30 *View file descriptors and list all open files being used by every process*
 
 sudo lsof -i :<port#> *Associate port# to process names*
 
