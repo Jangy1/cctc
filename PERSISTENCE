@@ -94,7 +94,7 @@ Get-NetTCPConnection -State Established
 Get-NetTCPConnection | Select LocalPort, RemoteAddress, State, OwningProcess
 Get-Process -Id <PID>
 
-netstat -anob = All connection and listening ports, numerically, owning PID, executable responisible for the connection
+netstat -ano = All connection and listening ports, numerically, owning PID, executable responisible for the connection
 
 -AutoRuns- *How persistence survives reboot*
 -Process Monitor-    PPID *IMPORTANT*
