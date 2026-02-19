@@ -1,29 +1,15 @@
--PERSISTENCE-                                                                                                Most           CPU registers, cache
-
-                                                                                                                        Routing table, ARP cache, process table, kernel stats, memory
-
-                                                                                                                        Temporary file systems
-                                                                                        -ORDER OF VOLATILITY-
-                                                                                                                        Disk
-
-                                                                                                                        Remote logging and monitoring data
-
-                                                                                                                        Physical configuration, network topology
-                                                                                                            Least       Archival media - backups
-
-                                                                                                                      
-
+----------------------------------------------------------OS PERSISTENCE----------------------------------------------------------------------------                                                                                              
 dir /R = Recursive search a directory 
 more < = Shows contentsd of hidden objects
 dir /a /s searchterm* = Searches for certain filename / directory
 Get-Item = display a specific registry key and its properties
 Get-Content reminder.txt -stream secret.info
+sudo -l = displays commands the user may run with elevated permissions
 
 bcdedit = boot config and boot artifacts
 bcdedit | finsdstr /i winload
 sc query
 sc qdescription
-reg query
 
 -Backup and restore Current BCD settings-
 C:\demo>bcdedit /export C:\Lion\BCD
@@ -62,13 +48,25 @@ cat .boot/grub/grub.cfg = GRUB configuration
 ------------------------------------ALWAYS CHECK PROFILES----------------------------------
 $PROFILE = Command configs and environmental variables dedicated to certain user, filepaths and scripts included
 AllUsersAllHosts
-AllUsersCurrentHosts
-CurrentUserCurrentHosts
+AllUsersCurrentHost
+CurrentUserCurrentHost
 CurrentUserAllHosts
 
---------------------------MORE PERSISTENCE-------------------------------
-    -System processes will not execute from user directories-
-    -All dll's live in C:\Windows\system32-
+All Users, All Hosts	$PSHOME\Profile.ps1
+All Users, Current Host	$PSHOME\Microsoft.PowerShell_profile.ps1
+Current User, All Hosts	$HOME\Documents\WindowsPowerShell\Profile.ps1
+Current User, Current Host	$HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+--------------------------REGISTRY PERSISTENCE-------------------------------
+reg query '<path\to\subkey>' *Enumerates specific subkey you are looking for*                                            -System processes will not execute from user directories-
+
+      -System-wide and per-user autoruns-
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKU\ < SID > \Software\Microsoft\Windows\CurrentVersion\Run
+HKU\ < SID > \Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKLM\SYSTEM\CurrentControlSet\services
+HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders
+HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon
 
 -Run keys execute programs at logon-
 HKLM\Software\Microsoft\Windows\CurrentVersion\Run
@@ -80,6 +78,12 @@ HKLM\SYSTEM\CurrentControlSet\Services
 -Per user persistence-
 HKU\<SID>\Software\Microsoft\Windows\CurrentVersion\Run
 
+-Wireless network connections-
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Profiles
+
+-User Profiles that have connected to the system*
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+------------------------------------------NETWORK COMMANDS-----------------------------------------------------------
 -View active network connections and listening ports-
 Get-NetTCPConnection -State Established 
                             Listen
@@ -89,7 +93,7 @@ Get-NetTCPConnection | Select LocalPort, RemoteAddress, State, OwningProcess
 Get-Process -Id <PID>
 
 netstat -ano = All connection and listening ports, numerically, owning PID, executable responisible for the connection
--------------------TOOLS--------------------------------------------------------
+-----------------------------------USEFUL TOOLS----------------------------------------------------------------------------
 -AutoRuns- *How persistence survives reboot*
 -Process Monitor-    PPID *IMPORTANT*
 -TCPView-   *Network*
@@ -129,18 +133,14 @@ sudo lsof  -p <PID> *searches based off PID*
 systemctl list-units --type=service *Search for services in Linux*
 
                                                                                   /lib/systemd/system *Contains services, targets, timers, etc*
-
-netstat -tulpn *show all listening ports*
-
-netstat -tulpn | grep -E ':(80|443)'  *Locate unknown web server potential or service*
+                                                                                  C:\Windows\system32  *Key locations for DLL's*
+                                                                                  C:\Windows\syswow64      V             V
 
 systemctl list-timers --all   *List all timers on linux*
 
 cat *.service | grep -E 'searchterm'
 
 systemctl status <PID>
-
-HKCU    *User specific*
 
 HKEY_USERS\*    *Show every logged on user at once*
 
@@ -189,17 +189,7 @@ journalctl -b <boot id>   * Filter by boot*
 journalctl -u ssh.service  *Filter by service*
                             -since "2 days ago"  *Filter by time*
 
-Xpath | SIEM Ingestion
-
 jq . conn.log   *pretty print the conn.log file*
-
-xpath -q -e '//element/@attribute' file.xml   *Parse files with Xpath*
-
-xpath -q -e "//host[ports/port/state/@state='open'] /address/@addr | //port[state/@state='open']/@portid " /home/garviel/output.xml  *Select every IP address with open (in use) ports using XPATH queries and XPATH axes.*
-
-
-
-
 -------------------------------METHODOLOGY FOR MEMORY ANALYSIS--------------------------------------------------------
 
 IDENTIFY ROUGE PROCESSES - Pslist vs. Psscan | Process validity | Multiple of same processes or misspelling 
