@@ -5,7 +5,7 @@ dir /a /s searchterm* = Searches for certain filename / directory
 Get-Item = display a specific registry key and its properties
 Get-Content reminder.txt -stream secret.info
 sudo -l = displays commands the user may run with elevated permissions
-sc query
+sc query 
 sc qdescription
 
 ls -l /proc/1/exe.
@@ -34,7 +34,6 @@ cat /etc/inittab = init reads to select default run levels
 /etc/rc#.d = Contains scripts to start/stop daemons
 top / htop = show PID and all services correlating and might be running at intervals
 Get-Process | Select Name, Id, Description | Sort -Property Id | more
-
 
 greb -aob "GRUB" mbroken = Sorts binary and locates where the string is at
 dd if=mbroken bs=1 skip=446 count=16 2>/dev/nll
