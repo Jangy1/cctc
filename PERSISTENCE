@@ -5,27 +5,22 @@ dir /a /s searchterm* = Searches for certain filename / directory
 Get-Item = display a specific registry key and its properties
 Get-Content reminder.txt -stream secret.info
 sudo -l = displays commands the user may run with elevated permissions
-
-bcdedit = boot config and boot artifacts
-bcdedit | finsdstr /i winload
 sc query
 sc qdescription
 
--Backup and restore Current BCD settings-
-C:\demo>bcdedit /export C:\Lion\BCD
-C:\demo>bcdedit /import C:\Lion\BCD
+ls -l /proc/1/exe.
+V      V      V
+If it points to /usr/lib/systemd/systemd or similar, the system uses systemd.
+If it points to /sbin/init, it likely uses SysV init or a SysV-compatible alternative
 
--------------Persistence through a service----------------------------------
+-------------------Persistence through a service----------------------------------
 Get-CimInstance -classname win32_service | select displayname
 tasklist /m = View all running processes and show loaded dll's for each process
 Get-Process
 Get-Service name | format-list * = View service and all properties in list
 
-
 Select Name, ProcessId, ParentProcessId
 cat suspicious files
-
-bcdedit /deletevalue {value} valuename
 
 -Verify mbr locating boot signature-
 sudo xxd -1 512 -g 1 /dev/sda
@@ -45,6 +40,8 @@ greb -aob "GRUB" mbroken = Sorts binary and locates where the string is at
 dd if=mbroken bs=1 skip=446 count=16 2>/dev/nll
 cat .boot/grub/grub.cfg = GRUB configuration
 
+ls -lisa /lib/systemd/system/default.target   *List default target unit for system*
+cat /lib/systemd/system/default.target        *List contents of default target*
 ------------------------------------ALWAYS CHECK PROFILES----------------------------------
 $PROFILE = Command configs and environmental variables dedicated to certain user, filepaths and scripts included
 AllUsersAllHosts
@@ -56,6 +53,11 @@ All Users, All Hosts	$PSHOME\Profile.ps1
 All Users, Current Host	$PSHOME\Microsoft.PowerShell_profile.ps1
 Current User, All Hosts	$HOME\Documents\WindowsPowerShell\Profile.ps1
 Current User, Current Host	$HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+
+------------------------------LINUX PROFILES---------------------------------------------
+/etc/bash.bashrc    * 
+/etc/profile    *Executes whenever a user logs in to a shell*
+
 --------------------------REGISTRY PERSISTENCE-------------------------------
 reg query '<path\to\subkey>' *Enumerates specific subkey you are looking for*                                            -System processes will not execute from user directories-
 
@@ -121,7 +123,6 @@ sc showsid <service> *show sid of service*
 ps --ppid 2 -lf | head
                                                                                                               -All PID lead back to 1 or 2-
                                                                                                                                   user  kernel
-
 sudo lsof | tail -30 *View file descriptors and list all open files being used by every process*
 
 sudo lsof -i :<port#> *Associate port# to process names*
@@ -131,13 +132,14 @@ htop *able to list orphan processes when sorted*
 sudo lsof  -p <PID> *searches based off PID*
 
 systemctl list-units --type=service *Search for services in Linux*
+                                                                               /lib/systemd/system *Contains services, targets, timers, etc*
+                                                                               C:\Windows\system32  *Key locations for DLL's*
+                                                                               C:\Windows\syswow64                   
+systemctl list-timers --all   *List all timers on linux systemd*
+                                                                               cron daemon checks the directories /var/spool/cron, /etc/cron.d and the file /etc/crontab
 
-                                                                                  /lib/systemd/system *Contains services, targets, timers, etc*
-                                                                                  C:\Windows\system32  *Key locations for DLL's*
-                                                                                  C:\Windows\syswow64      V             V
-
-systemctl list-timers --all   *List all timers on linux*
-
+/var/spool/cron/crontabs/ *User cron job*
+/etc/crontab    *System cron job*
 cat *.service | grep -E 'searchterm'
 
 systemctl status <PID>
@@ -173,23 +175,21 @@ Get-Item "REGISTRY::HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explo
         *Shows programs that were run and when they were executed*
 Get-Childitem -Path C:\Windows\Prefetch -ErrorAction Continue | select -First 8
 
-mail.info  - matches all messages produced by the kernel with severity of equal to and greater than (greater severity) 6 or Informational (severity 0 - 6).
-mail.!info  - matches all messages produced by the kernel with severity of less than and not including (lesser severity) 6 or Informational (severity 7).
-0 Emergency - Highest severity
-1 Alert
-2 Critical
-3 Error
-4 Warning
-5 Notice
-6 Informational
-7 Debug - Lowest severity
----------------LOGS----------------------------------------------------------------------------------------------------
+-----------------------------------------LOGS-------------------------------------------
 journalctl -e  *Jump to most recent entries*
 journalctl -b <boot id>   * Filter by boot*
 journalctl -u ssh.service  *Filter by service*
                             -since "2 days ago"  *Filter by time*
 
-jq . conn.log   *pretty print the conn.log file*
+Get-Service -Name * | Format-Table -Property Name, DisplayName -Wrap    *List all service names and display names*
+
+Get-EventLog -LogName <name> | Where-Object {$_.Message -match "specific string"}
+
+      -Search through the entire Security log for a specific string-
+Get-Eventlog -LogName Security | ft -wrap | findstr /i StR1nG
+
+Security Log  *Track invalid login attempts*
+-wrap  *option that forces all info if its been truncated*
 -------------------------------METHODOLOGY FOR MEMORY ANALYSIS--------------------------------------------------------
 
 IDENTIFY ROUGE PROCESSES - Pslist vs. Psscan | Process validity | Multiple of same processes or misspelling 
@@ -232,10 +232,10 @@ Get-LocalUser | Where-Object {$_.name -like "Tiff*"}
 Get-ADUser -Identity "user" -Properties *
 
 -----------------------------------------*TOOL VERY IMPORTANT*-----------------------------------------------------------------
--AUTORUNS *Shows applications started on boot as well as Registry and file locations for auto-start configs*
--TCPVIEW *Shows all TCP and UDP endpoints with local and remote addresses*
--TASK SCHEDULER *View task history*
--REGEDIT *View, create and modify Windows Registry* 
+-AUTORUNS *Shows applications started on boot as well as Registry and file locations for auto-start configs*  \
+-TCPVIEW *Shows all TCP and UDP endpoints with local and remote addresses*                                      \  VERY USEFUL WHEN 
+-TASK SCHEDULER *View task history*                                                                             /  USED TOGETHER
+-REGEDIT *View, create and modify Windows Registry*                                                           /
 
 
 
