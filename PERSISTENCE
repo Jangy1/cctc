@@ -119,7 +119,7 @@ get-service *show displayname and servicename*
 sc showsid <service> *show sid of service*
 
 
-/proc/<PID>/exe *Inspect a running process*
+/proc/<PID>/exe *Inspect a running process* 
 ps --ppid 2 -lf | head
                                                                                                               -All PID lead back to 1 or 2-
                                                                                                                                   user  kernel
@@ -176,6 +176,16 @@ Get-Item "REGISTRY::HKEY_USERS\*\Software\Microsoft\Windows\CurrentVersion\Explo
 Get-Childitem -Path C:\Windows\Prefetch -ErrorAction Continue | select -First 8
 
 -----------------------------------------LOGS-------------------------------------------
+
+/var/log/syslog or /var/log/messages: Contains general system activity and informational messages (Debian-based vs. Red Hat-based systems, respectively).
+/var/log/auth.log or /var/log/secure: Records authentication-related events, such as user logins (successful and failed), root user actions, and sudo usage.
+/var/log/kern.log: Stores messages from the Linux kernel, useful for troubleshooting hardware or driver issues.
+/var/log/cron.log: Logs information about scheduled tasks (cron jobs).
+/var/log/dmesg: Contains device driver messages produced during the boot process. The dmesg command is used to view these messages.
+/var/log/faillog and /var/log/btmp: Record failed login attempts, which helps in detecting potential security breaches.
+/var/log/wtmp: A binary file that maintains a history of all user login and logout activity. The last and who commands are used to view its contents
+/var/log     *standard location for most log time*
+
 journalctl -e  *Jump to most recent entries*
 journalctl -b <boot id>   * Filter by boot*
 journalctl -u ssh.service  *Filter by service*
