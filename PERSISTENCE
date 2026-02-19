@@ -16,8 +16,6 @@
 dir /R = Recursive search a directory 
 more < = Shows contentsd of hidden objects
 dir /a /s searchterm* = Searches for certain filename / directory
-echo "hidden data" > dir:HiddenInfo.txt
-
 Get-Item = display a specific registry key and its properties
 Get-Content reminder.txt -stream secret.info
 
@@ -31,7 +29,7 @@ reg query
 C:\demo>bcdedit /export C:\Lion\BCD
 C:\demo>bcdedit /import C:\Lion\BCD
 
--Persistence through a service-
+-------------Persistence through a service----------------------------------
 Get-CimInstance -classname win32_service | select displayname
 tasklist /m = View all running processes and show loaded dll's for each process
 Get-Process
@@ -117,9 +115,8 @@ sc showsid <service> *show sid of service*
 
 /proc/<PID>/exe *Inspect a running process*
 ps --ppid 2 -lf | head
-
--All PID lead back to 1 or 2-
-                    user  kernel
+                                                                                                              -All PID lead back to 1 or 2-
+                                                                                                                                  user  kernel
 
 sudo lsof | tail -30 *View file descriptors and list all open files being used by every process*
 
@@ -131,7 +128,7 @@ sudo lsof  -p <PID> *searches based off PID*
 
 systemctl list-units --type=service *Search for services in Linux*
 
-/lib/systemd/system *Contains services, targets, timers, etc*
+                                                                                  /lib/systemd/system *Contains services, targets, timers, etc*
 
 netstat -tulpn *show all listening ports*
 
@@ -151,11 +148,12 @@ JumpLists *Form of persistence*
 
 C:\Windows\Prefetch   *Some of these files created when an application runs for the first time*
 
-C:\Users\<USER>\AppData\Roaming     Reveals app + files requently or recently accessed or used* 
+C:\Users\<USER>\AppData\Roaming     *Reveals app + files requently or recently accessed or used* 
 
 HKCU\Software\Microsoft\Windows\CurrnetVersiob\Explorer\RecentDocs       *Last 150 files or folders opened*
                                                                   \.txt
-auditpol /get /categpry:*    *all auditing files* Auditing = who did what, when, and where.
+
+auditpol /get /category:*    *all auditing files* Auditing = who did what, when, and where.
 
 Get-Eventlog / Get-WinEvent / wevtutil
 
@@ -216,7 +214,7 @@ DUMP SUSPICIOUS PROCESSES - ProcDump | MemDump | Filescan | Svcscan| Driverirp
 
 CHECK FOR ROOTKIT - Psscan | devicetree
 
------------------------------------------- -----COMMANDS---------------------------------------------------------------
+--------------------------------------------USEFUL COMMANDS---------------------------------------------------------------
 List users (name wildcard)
 
 *Find the expired accounts that aren't disabled. List the last names in Alphabetical Order, separated with a comma, and no space between.*
