@@ -241,7 +241,7 @@ Get-LocalUser | Where-Object {$_.name -like "Tiff*"}
 *Find users full Identity and description*
 Get-ADUser -Identity "user" -Properties *
 
-*TOOL VERY IMPORTANT*
+-----------------------------------------*TOOL VERY IMPORTANT*-----------------------------------------------------------------
 -AUTORUNS *Shows applications started on boot as well as Registry and file locations for auto-start configs*
 -TCPVIEW *Shows all TCP and UDP endpoints with local and remote addresses*
 -TASK SCHEDULER *View task history*
