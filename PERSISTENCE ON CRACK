@@ -26,14 +26,6 @@ Get-WmiObject win32_service | Where-Object {$_.PathName -notlike "C:\Windows*"} 
 # View service registry path and ImagePath
 reg query "HKLM\SYSTEM\CurrentControlSet\Services" /s | findstr ImagePath
 ---------------------------------------------------------------------------------------------------------------------
-3. Startup Folder
-PowerShell
-# All users startup
-Get-ChildItem "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
-
-# Current user startup
-Get-ChildItem "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup"
---------------------------------------------------------------------------------------------------------------------
 4. Scheduled Tasks
 PowerShell
 # All scheduled tasks
@@ -47,23 +39,6 @@ Get-ScheduledTask -TaskPath "\Microsoft\Windows\*" -ErrorAction SilentlyContinue
 
 # Export all tasks to check execution paths
 Get-ScheduledTask | Export-ScheduledTask
----------------------------------------------------------------------------------------------------------------------
-5. WMI Event Subscriptions
-PowerShell
-# List all WMI event subscriptions (used for fileless persistence)
-Get-WmiObject __EventFilter -Namespace root\subscription
-Get-WmiObject __EventConsumer -Namespace root\subscription
-Get-WmiObject __FilterToConsumerBinding -Namespace root\subscription
-----------------------------------------------------------------------------------------------------------------------
-6. AppInit DLLs (DLL Injection)
-PowerShell
-reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Windows" /v AppInit_DLLs
-reg query "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Windows" /v AppInit_DLLs
-----------------------------------------------------------------------------------------------------------------------
-7. Shell Extensions & Context Menu
-PowerShell
-reg query "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers"
-reg query "HKLM\Software\Classes\*\shellex\ContextMenuHandlers"
 ----------------------------------------------------------------------------------------------------------------------
 8. PowerShell Profiles
 PowerShell
@@ -76,19 +51,6 @@ Get-Item "$PSHOME\Profile.ps1"
 Get-Item "$PSHOME\Microsoft.PowerShell_profile.ps1"
 Get-Item "$HOME\Documents\WindowsPowerShell\Profile.ps1"
 Get-Item "$HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
--------------------------------------------------------------------------------------------------------------------------
-9. Browser Extensions & Helpers
-PowerShell
-# Chrome extensions
-Get-ChildItem "C:\Users\*\AppData\Local\Google\Chrome\User Data\*\Extensions"
-
-# Firefox extensions
-Get-ChildItem "C:\Users\*\AppData\Roaming\Mozilla\Firefox\Profiles\*\extensions"
----------------------------------------------------------------------------------------------------------------------------
-10. Winlogon
-PowerShell
-reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
-# Check for: Userinit, Shell, GinaDLL, Notify keys
 --------------------------------------------LINUX PERSISTENCE COMMANDS-------------------------------------------------------
 SYSTEMD Systems (Modern Linux)
 1. Systemd Services
@@ -196,15 +158,6 @@ cat ~/.profile
 cat ~/.bashrc
 cat ~/.bash_profile
 cat ~/.bash_login
---------------------------------------------------SSH Keys & Authorized Access--------------------------------------------------------------
-bash
-# SSH keys for persistence
-ls -la ~/.ssh/authorized_keys
-ls -la /root/.ssh/authorized_keys
-
-# Check all user SSH keys
-find /home -name authorized_keys 2>/dev/null
-find /root -name authorized_keys 2>/dev/null
 ----------------------------------------------Kernel Modules (Rootkit Persistence)------------------------------------------------------------
 bash
 # List loaded kernel modules
@@ -215,16 +168,6 @@ ls -la /lib/modules/$(uname -r)/kernel/
 
 # Check for suspicious modules
 cat /proc/modules
---------------------------------------------------GRUB Boot Configuration------------------------------------------------------------------------
-bash
-# Boot configuration
-cat /boot/grub/grub.cfg
-
-# Check for boot hooks
-ls -la /etc/grub.d/
-
-# MBR verification
-sudo xxd -l 512 -g 1 /dev/sda
 --------------------------------------------DETERMINE INIT SYSTEM (CRITICAL FOR LINUX)-------------------------------------------------------------
 bash
 # Method 1: Check /proc/1/exe
@@ -242,5 +185,3 @@ ps -p 1 -o comm=
 Output Interpretation:
 /usr/lib/systemd/systemd or /lib/systemd/systemd = SYSTEMD
 /sbin/init or /bin/init = SYSV INIT
-User Login|PowerShell profiles|shell profiles|
-System Hooks|WMI, Winlogon|kernel modules
