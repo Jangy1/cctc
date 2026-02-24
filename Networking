@@ -23,7 +23,9 @@ switchport port-security maximum 1
 switchport port-security mac-address sticky
 switchport port-security violation shutdown
 
+Offset = (MTU - (IHL x4)) Divided by 8
 
+duckduckgo - for subnetting IPV4 addrewss
 
 
 
