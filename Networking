@@ -1,1 +1,45 @@
+--------------------DAY 1----------------------
+Username - vincenzo.hauck
+Password - vincenzo.hauck!
+Float IP - 10.50.229.90
+
+1 Byte = 8 Bits | 48 bit = 6 byte = 12 hex
+
+Hierarchical Toplogy
+The hierarchical topology model is made up of the following:
+A core layer - high-end switches optimized for network availability and performance.
+A distribution layer - switches implementing forwarding decisions.
+An access layer - connecting users via hubs, bridges, or switches.
+
+(ARP) is a networking protocol used to map an IP address to a MAC address within a local network segment.
+
+-Shutdown unused ports-
+interface fastethernet 0/1
+shutdown
+
+-Switchport Port Security- Can be used to limit the number of MAC addresses that can be dynamically learned on a port or static MAC addresses can be assigned to one. Violation modes of shut down can be used to secure the port should a violation occur.
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
