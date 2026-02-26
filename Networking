@@ -89,8 +89,9 @@ Search for ipv4 source or destination address of 10.1.1.1.
 Search for ipv6 source or destination address starting with FE80.
 'ip6[8:2] = 0xfe80'
 'ip6[24:2] = 0xfe80'
---------------------------------------------------------------------------------------------------
-
-
+---------------------------------------------------------------------------
+p0f -r wget.pcap -o /var/log/p0f.log
+cat /var/log/p0f.log | grep {expression}
+----------------------------------------------
 
 
