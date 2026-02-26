@@ -1,8 +1,11 @@
---------------------DAY 1----------------------
+--------------------DAY 1------------------------------------------------------------------------------------------------------
 Username - vincenzo.hauck
 Password - vincenzo.hauck!
 Float IP - 10.50.229.90
 
+Miro Whiteboard- https://miro.com/app/board/o9J_klSqCSY=/?share_link_id=16133753693
+
+------------------------------------------------------------------------------------------
 1 Byte = 8 Bits | 48 bit = 6 byte = 12 hex
 
 Hierarchical Toplogy
@@ -17,7 +20,7 @@ An access layer - connecting users via hubs, bridges, or switches.
 interface fastethernet 0/1
 shutdown
 
--Switchport Port Security- Can be used to limit the number of MAC addresses that can be dynamically learned on a port or static MAC addresses can be assigned to one. Violation modes of shut down can be used to secure the port should a violation occur.
+-Switchport Port Security- Can be used to limit the number of MAC addresses that can be dynamically learned on a port or static MAC addresses can be assigned to one.
 switchport port-security
 switchport port-security maximum 1
 switchport port-security mac-address sticky
@@ -27,22 +30,66 @@ Offset = (MTU - (IHL x4)) Divided by 8
 
 duckduckgo - for subnetting IPV4 addrewss
 
-------------------DAY 2---------------------
+----------------------------------DAY 2--------------------------------------
 ssh-keygen -f "/home/student/.ssh/known_hosts" -R "172.16.82.106"
 DHCP and SNMP used to compare valid agents or clients on server
 
+-----------------------------------DAY 3---------------------------------------
+Basic TCPDump options:
+-A = print payload in ASCII
+-D = list interfaces
+-i = specify capture interface
+-e = print data-link headers
+-X or XX = print payload in HEX and ASCII
+-w = write to pcap
+-r = read from a pcap
+-v,vv,vvv = verbosity
 
+Primitives may be combined using:
+Concatenation: 'and' ( && )
+Alteration: 'or' ( || )
+Negation: 'not' ( ! )
 
+< or < =
+> or >=
+= or == or !=
 
+SO_ATTACH_FILTER = allows us to attach a Berkley Packet Filter to the socket
 
+BPF Examples:
+tcpdump -i eth0 'ether[12:2] = 0x0806'
+tcpdump -i eth1 'ip[9] = 0x06'
+tcpdump -i eth0 'tcp[0:2] = 53 || tcp[2:2] = 53'
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BPFs at the Network layer:
+Search for ONLY the RES flag set. DF and MF must be off.
+'ip[6] & 0xE0 = 0x80'
+'ip[6] & 224 = 128'
 
+Search for RES bit set. The other 2 flags are ignored so they can be on or off.
+'ip[6] & 0x80 = 0x80'
+'ip[6] & 128 = 128'
 
+Search for ONLY the DF flag set. RES and MF must be off.
+'ip[6] & 0xE0 = 0x40'
+'ip[6] & 224 = 64'
 
+Search for DF bit set. The other 2 flags are ignored so they can be on or off.
+'ip[6] & 0x40 = 0x40'
+'ip[6] & 64 = 64'
 
+Search for offset field having any value greater than zero (0).
+'ip[6:2] & 0x1fff > 0'
+'ip[6:2] & 8191 > 0'
 
+Search for ipv4 source or destination address of 10.1.1.1.
+'ip[12:4] = 0x0a010101'
+'ip[16:4] = 0x0a010101'
 
-
-
+Search for ipv6 source or destination address starting with FE80.
+'ip6[8:2] = 0xfe80'
+'ip6[24:2] = 0xfe80'
+--------------------------------------------------------------------------------------------------
 
 
 
