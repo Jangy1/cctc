@@ -65,6 +65,23 @@ Search for ipv4 source or destination address of 10.1.1.1.
 ---------------------------------------------------------------------------
 p0f -r wget.pcap -o /var/log/p0f.log
 cat /var/log/p0f.log | grep {expression}
-----------------------------------------------
+----------------------------USEFUL SCRIPTS FOR NETWORKING-----------------------------
+ Socket Programming
+Python3 TCP Stream Socket Client:
+wget http://10.50.0.1:8080/class/networking/stream.py; chmod +x stream.py
+
+Python3 TCP Datagram Socket Client:
+wget http://10.50.0.1:8080/class/networking/dgram.py; chmod +x dgram.py
+
+Python3 IP RAW Socket:
+wget http://10.50.0.1:8080/class/networking/ipraw.py; chmod +x ipraw.py
+
+Python3 TCP RAW Socket:
+wget http://10.50.0.1:8080/class/networking/tcpraw.py; chmod +x tcpraw.py
+
+Netcat TCP Full Connect Scan Script:
+wget http://10.50.0.1:8080/class/networking/scan.sh; chmod +x scan.sh
+
+
 
 
