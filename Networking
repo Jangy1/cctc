@@ -3,9 +3,11 @@ Username - vincenzo.hauck
 Password - vincenzo.hauck!
 Float IP - 10.50.229.90
 
-Miro Whiteboard- https://miro.com/app/board/o9J_klSqCSY=/?share_link_id=16133753693
-TCPDump Examples- https://www.shellspells.net/network/packet-capture/tcpdump-examples
+Miro Whiteboard - https://miro.com/app/board/o9J_klSqCSY=/?share_link_id=16133753693
+TCPDump Examples - https://www.shellspells.net/network/packet-capture/tcpdump-examples
 Subnetting IPv4- duckduckgo
+DNS Lookup - https://whois.domaintools.com/
+BGP Lookup - hackertarget.com
 ------------------------------------------------------------------------------------------
 1 Byte = 8 Bits | 48 bit = 6 byte = 12 hex
 
@@ -82,6 +84,6 @@ wget http://10.50.0.1:8080/class/networking/tcpraw.py; chmod +x tcpraw.py
 Netcat TCP Full Connect Scan Script:
 wget http://10.50.0.1:8080/class/networking/scan.sh; chmod +x scan.sh
 
-
-
+MAC OUI and EUI lookup:
+wget http://10.50.0.1:8080/class/networking/mac_oui_lookup.py; chmod +x mac_oui_lookup.py
 
