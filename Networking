@@ -86,4 +86,34 @@ wget http://10.50.0.1:8080/class/networking/scan.sh; chmod +x scan.sh
 
 MAC OUI and EUI lookup:
 wget http://10.50.0.1:8080/class/networking/mac_oui_lookup.py; chmod +x mac_oui_lookup.py
+------------------------------------------------------------------------------------------------------
+Whois - queries DNS registrar over TCP port 43
+Information about the owner who registered the domain
+
+Dig - queries DNS server over UDP port 53
+Name to IP records
+
+Nmap HAIL MARY:
+nmap -T4 -O2 -n -p<port range> <ip range> -sV -sT
+
+What is running on a particular port:
+-nc [Target IP] [Target Port]-
+nc 172.16.82.106 22
+         OR
+nc -u 172.16.82.106 53
+
+Hosted on webserver:
+wget http://172.16.82.106
+wget -r http://172.16.82.106
+wget -r ftp://172.16.82.106
+wget -r ftp://172.16.82.106 --user=student --password=password
+
+
+
+
+
+
+
+
+
 
