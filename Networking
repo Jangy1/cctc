@@ -108,7 +108,8 @@ wget -r http://172.16.82.106
 wget -r ftp://172.16.82.106
 wget -r ftp://172.16.82.106 --user=student --password=password
 
-
+Always check the share drive in our ranges:
+ls -al /usr/share/cctc
 
 
 
