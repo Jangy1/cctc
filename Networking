@@ -111,7 +111,10 @@ wget -r ftp://172.16.82.106 --user=student --password=password
 Always check the share drive in our ranges:
 ls -al /usr/share/cctc
 
-
+PING SCAN:
+ping -c 1 172.16.82.106
+for i in {1..254}; do (ping -c 1 172.16.82.$i | grep "bytes from" &) ; done
+sudo nmap -sP 172.16.82.96/27
 
 
 
