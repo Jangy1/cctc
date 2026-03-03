@@ -158,6 +158,17 @@ scp -P 1111 student@172.16.82.106:secretstuff.txt .
 -Upload a file to a remote directory from a local directory-
 scp -P 1111 secretstuff.txt student@172.16.82.106:
 
+file transfer
+    nc -lvp 9001 > newfile.txt
+Client (sends file):
+    nc 172.16.82.106 9001 < file.txt
+
+NETCAT: Listener to Client file transfer
+Listener (sends file):
+    nc -lvp 9001 < file.txt
+Client (receive file):
+    nc 172.16.82.106 9001 > newfile.txt
+
 
 
 
