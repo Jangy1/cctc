@@ -132,6 +132,7 @@ NETWORK RECON METHOLOGY:
 7. Scan new subnet NC | NMAP | Ping Sweep
 8. LOOP BACK TO BEGINNING
 
+xdg-open ./hint-01.png
 
 
 
