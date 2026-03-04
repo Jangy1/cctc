@@ -129,7 +129,7 @@ NETWORK RECON METHOLOGY:
 3. wget -r http://    ftp://         --user --password
 4. Get on box
 5. ipconfig | ip addr    *Can I talk to other nets* *SHAREDRIVE*
-6. arp | netstat | tasklist | ps -elf | whoami | 
+6. arp | netstat | tasklist | ps -elf | whoami | ss -ntpl
 7. Scan new subnet NC | NMAP | Ping Sweep
 8. LOOP BACK TO BEGINNING
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
