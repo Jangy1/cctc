@@ -125,7 +125,7 @@ sudo nmap -sP 172.16.82.96/27
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 NETWORK RECON METHOLOGY:
 1. Scan IP 21-23,80
-2. Banner grab open ports
+2. Banner grab open ports                nc <ip> <port#>
 3. wget -r http://    ftp://         --user --password
 4. Get on box
 5. ipconfig | ip addr    *Can I talk to other nets* *SHAREDRIVE*
