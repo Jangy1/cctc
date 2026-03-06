@@ -3,7 +3,7 @@ What is running on a particular port:
 nc 172.16.82.106 22
          OR
 nc -u 172.16.82.106 53
-
+ 
 Hosted on webserver:
 wget http://172.16.82.106
 wget -r http://172.16.82.106
