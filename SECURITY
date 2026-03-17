@@ -1,4 +1,4 @@
----------------------------------SECURITY---------------------------------------------------------
+------------------------------------------------SECURITY---------------------------------------------------------
 Research
 https://www.exploit-db.com/exploits/49637 ----------> HIGHLY RECOMMENED
 https://nvd.nist.gov/vuln/detail/cve-2021-26855
@@ -11,18 +11,24 @@ Stack Number	Username	Password	    jump
 
 http://10.50.143.84:8000 ----------> CTF Challenges
 
+  ---RAPIDLY SCAN HOSTS IN A NETWORK---
+for i in {1..255}; do (ping -c 1 10.50.12.$i | grep "bytes from" &); done
 
+-----------------------------------------PORT DISCOVERY---------------------------------------------
+ nmap -p 53 --script dns* 10.50.12.22-24
 
+nmap -p 80 --script http-enum 10.50.12.22-24
 
+for i in {96..128}; do proxychains nc -nvzw1 129.168.NetID.$i 22 53 80 135 137 139 445 2>&1 | grep OK | grep -Eo "192.168.NetID.:[0-9]" ;done
 
+----ESTABLISH MULTIPLE SSH TUNNELS----
+ssh -S /tmp/jump jump -O forward -L1111:10.50.12.21:22 -L112:10.50.12.21:80 
 
+----SHUTDOWN MULTIPLE SSH TUNNELS----
+ssh -S /tmp/jump jump -O cancel -L1111:10.50.12.21:22 -L112:10.50.12.21:80 
 
-
-
-
-
-
-
+----PROXYCHAINS TUNNEL FOR TOOLS----
+ssh -S /tmp/jump jump -O forward -D 9050
 
 
 
