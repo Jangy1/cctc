@@ -31,7 +31,8 @@ ssh -S /tmp/jump jump -O exit -L1111:10.50.12.21:22 -L112:10.50.12.21:80
 ssh -S /tmp/jump jump -O forward -D 9050
 
 ------ESTABLIHS MASTER SOCKET------
-ssh -MS /tmp/jump agent@10.50.15.242
+ssh -MS /tmp/jump agent@10.50.15.242        ssh -S /tmp/jump jump
+
 
 
 
