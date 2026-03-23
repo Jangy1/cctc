@@ -53,3 +53,33 @@ waterbender123
 firebender123       ZmlyZWJlbmRlcjEyMw==     PASSWORD
 Zuko      WnVrbw==
 Aang      QWFuZw==
+
+192.168.28.111 
+80/tcp open  http
+|_http-title: Donovian National Consulting
+
+192.168.28.100
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-title: Donovian Government
+ http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/login.php: Possible admin folder
+|_  /img/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+
+
+index.html" class="active">Home</a></li>
+          <li><a href="projets.html">works</a></li>
+          <li><a href="products.php">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="./sites/index.html">articles</a></li>
+          <li><a href="./sites/internal/index.html">Upload Portal<
+
+
+
+
+
+
+
+
+
