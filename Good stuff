@@ -50,6 +50,6 @@ category= 2 UNION SELECT Name,Description,Level FROM sqlinjection.permissions
 
 teaatime
 waterbender123
-firebender123       PASSWORD
-Zuko
-Aang
+firebender123       ZmlyZWJlbmRlcjEyMw==     PASSWORD
+Zuko      WnVrbw==
+Aang      QWFuZw==
