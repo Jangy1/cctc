@@ -167,12 +167,37 @@ info <...>  #   Supply info for specific stack areas
 x/256c $<REGISTER>  #   Read characters from specific register
 break <address>  #   Establish a break point
 
-
-
-
-
-
-
+-------------------------------------------------------------------------------------------
+ 1 ## Download func
+ 2
+ 3 ## Static Analysis ##
+ 4 ## strings func
+ 5 ## file func
+ 6     ## Wants a String, is an ELF (executable)
+ 7
+ 8 ## Behavioral Analysis ##
+ 9 ## chmod u+x func
+10 ## run it 
+11 # Command Substitution (parameter):            TEST EVERY SINGLE TIME!!! (parameter) or (UI)
+12     # ./func $(echo "12345") 
+13 # User Input:
+14     # ./func <<<$(echo "12345")
+15
+16 ## Dynamic Analysis ##
+17 # Fuzzing
+18    # ./func <<<$(echo "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")      BREAKING FUNCTION
+19    # ./func <<<$(echo "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")  ENOUGH TO BREAK
+20
+21 # gdb ./func
+22      # shell (gives shell)
+23      # exit (gets us back to gdb)
+24      # info functions
+25      # run (Ctrl + c to exit)
+26      # info functions again (more output)
+27 # Dissassembly
+28     # pdisass main  
+29     # pdisass <new function call>
+30
 
 
 
