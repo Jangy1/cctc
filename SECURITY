@@ -160,7 +160,12 @@ SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
 
 ## STEP 3
 | Selection=2 UNION SELECT 1,table_schema,table_name FROM information_schema.tables
-
+----------------------------------------------------------------------------------------------
+### GDB COMMON COMMANDS ###
+disass <FUNCTION>   #   Disassemble portion of the program
+info <...>  #   Supply info for specific stack areas
+x/256c $<REGISTER>  #   Read characters from specific register
+break <address>  #   Establish a break point
 
 
 
