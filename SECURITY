@@ -223,7 +223,7 @@ print(offset)
     #memory address after heap:0xf7de10001
     #memory address before stack:0xffffe000
     #find /b 0xf7de1000, 0xffffe000, 0xff, 0xe4
-    ## JMP EST locations:
+    ## JMP EST locations:    FIRST 5
     0xf7de9d29
     0xf7deb439
 0xf7debd49
