@@ -218,7 +218,7 @@ print(offset)
     #unset env COLUMNS
     #show env (verify nothing is in there)
     ## run OR start (run just runs it, start allows for breakpoint)
-    #info proc map
+    #info proc map  (run ./inventory.exe | Ctrl + C when prompted)
         #(may need to run "step" and "info proc map" again to see heap and stac
     #memory address after heap:0xf7de10001
     #memory address before stack:0xffffe000
