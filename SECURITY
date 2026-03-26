@@ -314,7 +314,8 @@ ADD ALL RESULTS TO SCIRPT AND PRINT STATEMENT
   s.send(buf)  #Sends value of buf
   print s.recv(1024)  #Print response
   s.close()  #Closes the socket
-  
+  -------------------------------------------------------------------------------------------------------------------------------------------------------
+
  
  
   
