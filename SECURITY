@@ -316,7 +316,12 @@ ADD ALL RESULTS TO SCIRPT AND PRINT STATEMENT
   print s.recv(1024)  #Print response
   s.close()  #Closes the socket
   -------------------------------------------------------------------------------------------------------------------------------------------------------
-
+DLL Search Order
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs
+  The directory the the Application was run from  *IMPORTANT*
+    The directory specified in in the C+ function GetSystemDirectory()
+      The directory specified in the C+ function GetWindowsDirectory()
+        The current directory
  
  
   
