@@ -366,11 +366,18 @@ File-Type: .evtx/.evt
 wevtutil el
 wmic ntevent where "logfile="<LOGNAME>" list full
 Get-Eventlog -List
+--------------------------------------------------------------------------
+##SUDO##
+sudo -l 
 
+##SUID/SGID##
+find / -type f -perm /4000 -ls 2>/dev/null # Find SUID only files
+                     /2000                 # Find SGID only files
+                     /6000                 # Find SUID and/or SGID files
+gtfobins.org 
 
-
-
-
+## "." in path ##
+echo $PATH 
 
 
 
