@@ -211,18 +211,24 @@ share4	comment
 share4	mime
 share4	data
 
+Hacker
+
+user Hacker
+
+password 4
+
+SELECT permission FROM members WHERE username='Hacker' AND password='4' AND permission='admin'
+
+SELECT * FROM members WHERE password='4' AND permission='admin'
 
 
 
-
-
-
-
-
-
-
-
-
+Nmap scan report for 192.168.28.120
+Host is up (0.0021s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE VERSION
+4242/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 
 
