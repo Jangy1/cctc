@@ -1,0 +1,92 @@
+Stack Number	Username	Password	jump
+10 	GIEC-M-503 	2XdhwjhZpAqP 	10.50.12.75
+
+Account login - tom ' OR 1='1
+
+## pwd ##
+ROT13
+/var/www/html
+
+## ip addr ##
+raf192: varg 10.10.28.20/27
+
+ ens192: inet 10.10.28.20/27
+
+## ss -tulpn ##
+gpc6       0      0 10.10.28.20:80          10.50.188.39:49296      GVZR_JNVG   -                    gvzrjnvg (50.95/0/0)
+gpc6       0      0 10.10.28.20:80          10.50.188.39:45808      RFGNOYVFURQ -                    xrrcnyvir (7199.99/0/0)
+gpc        0      0 127.0.0.1:3306          0.0.0.0:*               YVFGRA      -                    bss (0.00/0/0)
+tcp        0      0 127.0.0.1:34106         127.0.0.53:53           ESTABLISHED -                    off (0.00/0/0)
+
+user2
+
+## ls -la ##
+-rw-rw-rw- 1 root root      1503 Mar  5  2025 admin.php
+-rw-rw-rw- 1 root root       846 Mar  5  2025 apply.html
+drwxrwxrwx 2 root root      4096 Mar  5  2025 careers
+-rw-rw-rw- 1 root root       917 Mar  5  2025 careers.html
+-rw-rw-rw- 1 root root       744 Mar  5  2025 contact.html    ***   PublicAffairs@TargetCorp.com
+-rw-rw-rw- 1 root root       475 Mar  5  2025 getcareers.php
+drwxrwxrwx 2 root root      4096 Mar  5  2025 img
+-rw-rw-rw- 1 root root      1077 Mar  5  2025 index.html
+-rw-rw-rw- 1 root root     24939 Mar  5  2025 letterfromceo.pdf    ***   CChaplann@UniversalExports.com
+-rw-rw-rw- 1 root root       951 Mar  5  2025 login.html
+-rw-rw-rw- 1 root root      1425 Mar  5  2025 login.php
+-rw-rw-rw- 1 root root       215 Mar  5  2025 logout.php
+drwxrwxrwx 2 root root      4096 Mar 31 12:55 scripts
+-rw-rw-rw- 1 root root       742 Mar  5  2025 secureServ.php     ***   "logout.php">Logout Aaron
+-rw-rw-rw- 1 root root       791 Mar  5  2025 site.css
+-rw-rw-rw- 1 root root       572 Mar  5  2025 software.php
+-rw-rw-rw- 1 root root       429 Mar  5  2025 status.php
+drwxrwxrwx 2 root root      4096 Mar  5  2025 sw
+-rw-rw-rw- 1 root root       361 Mar  5  2025 upload.php
+
+<td><label for="username">Username:</label></td>
+<td><input type="text" id="username" name="username" maxlength="50" /></td>
+</tr> <tr>
+<td><label for="passwd">Password:</label></td>
+<td><input type="password" id="passwd" name="passwd"
+
+## 10.50.12.75/scripts/development.py ##    DIRECT SSH ACCESS FROM LIN-OPS
+system_user=user2
+user_password=TurkeyDay24
+
+## cat known_hosts ##
+|1|jVMMO1ps5JdCK+Px/+/pD8BKVaU=|kJ/7XZDmAb4K48lrCDWuYXUI+d8= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPPNJyzDK44vRbZRxyPqWbc3Gx4W60kBdCfdYfiVwuyN/+uXTXObtbUwoQH8MnXNsvrD543ZhYbIhnr0eXiOJ4g=
+
+## exploit_me ## located in /var/tmp (malicious)
+strings - Nothing relevant
+file - ELF
+run it - ./exploit_me <stuff-goes-here>
+  ./exploit_me $(echo "12345")    You entered: 12345
+   ./exploit_me <<<$(echo "12345")    ./exploit_me <stuff-goes-here>
+
+## gdb ./exploit_me ##
+psdisass main - 0x080491a3 <+49>:	call   0x8049030 <printf@plt>    VULNERABLE FUNCTION
+0x08049030  printf@plt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
