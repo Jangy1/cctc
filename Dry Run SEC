@@ -64,17 +64,41 @@ run it - ./exploit_me <stuff-goes-here>
 ## gdb ./exploit_me ##
 psdisass main - 0x080491a3 <+49>:	call   0x8049030 <printf@plt>    VULNERABLE FUNCTION
 0x08049030  printf@plt
+----------------------------------------------------------------
+192.168.28.175 BestWebApp
 
+customer 	id 	$siteusers
+customer 	name 	$siteusers
+customer 	account 	$siteusers
+customer 	category 	$siteusers
+customer 	description 	$siteusers
+net_products 	id 	$siteusers
+net_products 	quantity 	$siteusers
+net_products 	product 	$siteusers
+net_products 	price 	$siteusers
+purchase_history 	id 	$siteusers
+purchase_history 	quantity 	$siteusers
+purchase_history 	product 	$siteusers
+purchase_history 	account 	$siteusers
+shippingdates 	id 	$siteusers
+shippingdates 	ordernumber 	$siteusers
+shippingdates 	account 	$siteusers
+shippingdates 	date 	$siteusers
+users 	user_id 	$siteusers
+users 	name 	$siteusers
+users 	username 	$siteusers
 
+appleBottomJ3an$ 	$Aaron
+2 	TurkeyDay24 	$user2
+3 	Bob4THEPin3apples 	$user3
+4 	Yebgu 	$Lee_Roth
+4 	anotherpassword4THEages 	$Lroth
 
+192.168.28.165
+22/tcp   open  ssh
+8888/tcp open  sun-answerbook
 
-
-
-
-
-
-
-
+192.168.28.189
 
 
 
