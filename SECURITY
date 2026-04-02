@@ -328,7 +328,7 @@ Finding vulnerable Scheduled Tasks
   schtasks /query /fo LIST /v
 --------------------------------------------------------------------------------------
 ##DLL HIJACKING##
-Process Name contains putty.exe
+Process Name contains putty.exe    (ProcMon)
 Path contains .dll
 Result is NAME NOT FOUND
 
